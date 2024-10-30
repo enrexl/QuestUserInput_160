@@ -49,7 +49,7 @@ fun UserInput(modifier: Modifier= Modifier) { //nama fungsi pertama harus sesuai
 
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(top = 16.dp),
+        Modifier.fillMaxSize().padding(top = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
@@ -61,25 +61,27 @@ fun UserInput(modifier: Modifier= Modifier) { //nama fungsi pertama harus sesuai
 
         Spacer(modifier = Modifier.padding(20.dp))
 
-        TextField(modifier = Modifier.fillMaxWidth().padding(5.dp),
+        TextField(
             value = nama,
             onValueChange = { nama = it },
             label = { Text("Nama") },
-            placeholder = { Text("Masukan Nama Anda") }
+            placeholder = { Text("Masukan Nama Anda") },
+            modifier = Modifier.fillMaxWidth().padding(5.dp)
         )
 
         Row {
             itemJk.forEach { selectedJk ->
-                Row {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     RadioButton(selected = jk == selectedJk,
                         onClick = {
-                            dataJk = jk
+                            jk = selectedJk
                         })
                     Text(selectedJk)
 
                 }
 
             }
+        }
 
             TextField(
                 modifier = Modifier.fillMaxWidth().padding(5.dp),
@@ -87,7 +89,7 @@ fun UserInput(modifier: Modifier= Modifier) { //nama fungsi pertama harus sesuai
                 onValueChange = { email = it },
                 label = { Text("Email") },
                 placeholder = { Text("Masukan Email Anda") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
 
             TextField(
@@ -125,6 +127,7 @@ fun UserInput(modifier: Modifier= Modifier) { //nama fungsi pertama harus sesuai
             Card(modifier = Modifier.padding(16.dp)) {
                 Column {
                     TampilData(judul = "Nama", isinya = dataNama)
+                    TampilData(judul = "Jenis Kelamin", isinya = dataJk)
                     TampilData(judul = "Email", isinya = dataEmail)
                     TampilData(judul = "No Hp", isinya = dataNoHp)
                     TampilData(judul = "Alamat", isinya = dataAlamat)
@@ -132,7 +135,7 @@ fun UserInput(modifier: Modifier= Modifier) { //nama fungsi pertama harus sesuai
             }
 
         }
-    }
+
 }
 @Composable
 fun TampilData(

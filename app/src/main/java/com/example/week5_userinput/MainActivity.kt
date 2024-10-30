@@ -20,8 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Week5UserInputTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    UserInput(modifier = Modifier.padding())
-                    )
+                    UserInput(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
